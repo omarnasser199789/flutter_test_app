@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../util/assets_manager.dart';
 
-// Back button wrapped with SafeArea
 class BackButtonWidget extends StatelessWidget {
   const BackButtonWidget({super.key});
 

@@ -149,13 +149,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
         filled: true,
         fillColor: Colors.transparent,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(kBorderRadius),
           borderSide: BorderSide.none,
         ),
         hintStyle: Theme.of(context)
             .textTheme
             .labelMedium
-            ?.copyWith(color: iconsColor),
+            ?.copyWith(color: kIconsColor),
 
         errorStyle: Theme.of(context)
             .textTheme
@@ -195,24 +195,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
               color: Theme.of(context).primaryColor.withOpacity(1), width: 1.0),
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
 
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
               color: Theme.of(context).primaryColor.withOpacity(0.5), width: 1.0),
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
 
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.red, width: 1.0),
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
 
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
               color: Theme.of(context).disabledColor, width: 1.0),
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
       ),
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays a vertical timeline with customizable events.
 class TimelineView extends StatefulWidget {
   const TimelineView({super.key});
 
@@ -8,23 +9,23 @@ class TimelineView extends StatefulWidget {
 }
 
 class _TimelineViewState extends State<TimelineView> {
-
-  static const Color _primaryColor = Color(0xFF4E46B4);
-  static const Color _secondaryColor = Color(0xFF10B981);
-  static const Color _warningColor = Color(0xFFF59E0B);
+  // Define theme colors for reuse
+  static const Color _primaryColor = Color(0xFF4E46B4);     // For timeline lines and checkboxes
+  static const Color _secondaryColor = Color(0xFF10B981);   // For success markers
+  static const Color _warningColor = Color(0xFFF59E0B);     // For warning markers
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 30,right: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(
-            color: const Color.fromRGBO(220, 218, 240, 1),  // Border color
-            width: 1.0,          // Border width
+            color: const Color.fromRGBO(220, 218, 240, 1),
+            width: 1.0,
           ),
-          borderRadius: BorderRadius.circular(12), // Optional: rounded corners
+          borderRadius: BorderRadius.circular(12),
         ),
         child: ListView(
           shrinkWrap: true,
@@ -32,52 +33,50 @@ class _TimelineViewState extends State<TimelineView> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             _buildTimelineItem(
-              'Oct 22',
-              'Task title name',
-              'this is a place to add any comment and note\nis a place to add any comment and note',
-              _secondaryColor,
+              date: 'Oct 22',
+              title: 'Task title name',
+              description: 'This is a place to add any comment and note\nIt is a place to add any comment and note',
+              color: _secondaryColor,
               hasCheckbox: true,
             ),
             _buildTimelineItem(
-                'Nov 3',
-                'Logs title name',
-                'this is a place to add any comment and note\nis a place to add any comment and note',
-                _warningColor,
-                hasSelected: true
+              date: 'Nov 3',
+              title: 'Logs title name',
+              description: 'This is a place to add any comment and note\nIt is a place to add any comment and note',
+              color: _warningColor,
+              hasSelected: true,
             ),
             _buildTimelineItem(
-              'Nov 3',
-              'Logs title name',
-              'this is a place to add any comment and note\nis a place to add any comment and note',
-              _warningColor,
+              date: 'Nov 3',
+              title: 'Logs title name',
+              description: 'This is a place to add any comment and note\nIt is a place to add any comment and note',
+              color: _warningColor,
             ),
             _buildTimelineItem(
-              'Nov 3',
-              'Logs title name',
-              'this is a place to add any comment and note\nis a place to add any comment and note',
-              _warningColor,
+              date: 'Nov 3',
+              title: 'Logs title name',
+              description: 'This is a place to add any comment and note\nIt is a place to add any comment and note',
+              color: _warningColor,
             ),
           ],
         ),
       ),
     );
-
-
   }
 
-  /// Build individual timeline item
-  Widget _buildTimelineItem(
-      String date,
-      String title,
-      String description,
-      Color color, {
-        bool hasCheckbox = false,
-        bool hasSelected = false,
-      }) {
+  /// Builds a single timeline item row.
+  Widget _buildTimelineItem({
+    required String date,
+    required String title,
+    required String description,
+    required Color color,
+    bool hasCheckbox = false,
+    bool hasSelected = false,
+  }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Date column
+        // Left column showing the date
         SizedBox(
           width: 60,
           child: Text(
@@ -85,6 +84,7 @@ class _TimelineViewState extends State<TimelineView> {
             style: Theme.of(context).textTheme.labelSmall,
           ),
         ),
+
         // Timeline line
         Column(
           children: [
@@ -92,15 +92,21 @@ class _TimelineViewState extends State<TimelineView> {
               width: 3,
               height: 150,
               margin: const EdgeInsets.symmetric(horizontal: 16),
-              color: hasSelected?_primaryColor:_primaryColor.withOpacity(0.3),
+              color: hasSelected
+                  ? _primaryColor
+                  : _primaryColor.withOpacity(0.3), // Dim line if not selected
             ),
           ],
         ),
-        const SizedBox(width: 20,),
+
+        const SizedBox(width: 20),
+
+        // Right section with content
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Title with colored circle
               Row(
                 children: [
                   Container(
@@ -114,16 +120,26 @@ class _TimelineViewState extends State<TimelineView> {
                   const SizedBox(width: 8),
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 18,),
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall!
+                        .copyWith(fontSize: 18),
                   ),
                 ],
               ),
+
               const SizedBox(height: 8),
+
+              // Description
               Text(
                 description,
                 maxLines: 3,
-                style: Theme.of(context).textTheme.labelSmall!.copyWith(color: const Color.fromRGBO(90, 89, 98, 1)),
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: const Color.fromRGBO(90, 89, 98, 1),
+                ),
               ),
+
+              // Optional checkbox action
               if (hasCheckbox) ...[
                 const SizedBox(height: 12),
                 Row(
