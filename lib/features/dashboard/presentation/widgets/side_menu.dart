@@ -288,7 +288,7 @@ class _UserAvatar extends StatelessWidget {
       radius: _SideMenuState._avatarRadius,
       backgroundColor: _SideMenuState._drawerBackground,
       child: Text(
-        'MA',
+        'OM',
         style: TextStyle(
           color: DashboardColors.primary,
           fontSize: _SideMenuState._avatarTextFontSize,
