@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'injection_container.dart' as di;
 import 'Theme/theme_values.dart';
 import 'get_started_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MyApp());
 }
 

@@ -35,6 +35,12 @@ dependencies:
   flutter_svg: ^2.1.0
   animated_text_kit: ^4.2.2
   timelines: ^0.1.0
+  get_it: ^7.2.0
+  flutter_bloc: ^7.0.1
+  equatable: ^2.0.3
+  dartz: ^0.10.0
+  flutter_secure_storage: ^8.0.0
+  advance_notification: ^1.0.6
 
 
   # The following adds the Cupertino Icons font to your application.

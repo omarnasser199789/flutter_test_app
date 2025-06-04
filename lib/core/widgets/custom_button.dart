@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../Theme/style.dart';
+
 class CustomButton extends StatefulWidget {
   const CustomButton({
     super.key,
@@ -54,7 +56,7 @@ class _CustomButtonState extends State<CustomButton> {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
-          borderRadius: BorderRadius.circular(25), // optional: rounded corners
+          borderRadius: BorderRadius.circular(kBorderRadius), // optional: rounded corners
         ),
 
 
@@ -77,13 +79,12 @@ class _CustomButtonState extends State<CustomButton> {
         Shimmer.fromColors(
             baseColor: Theme.of(context).primaryColor,
             highlightColor: Colors.white,
-            child:Container(decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(6)),
-          height: 44,
+            child:Container(decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(kBorderRadius)),
+          height: 50,
         )),
         Text(
-          "الرجاء الانتظار",
-          style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Theme.of(context).scaffoldBackgroundColor),
-        )
+          "Loading...",
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.black)        )
       ],
     );
   }

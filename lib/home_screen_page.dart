@@ -6,7 +6,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 
 import 'core/widgets/back_button_widget.dart';
 import 'core/widgets/background_glows.dart';
-import 'login_page.dart';
+import 'features/auth/presentation/pages/login_page.dart';
 
 
 class HomeScreenPage extends StatelessWidget {

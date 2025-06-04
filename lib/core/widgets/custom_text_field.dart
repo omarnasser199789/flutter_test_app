@@ -150,7 +150,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
         fillColor: Colors.transparent,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(kBorderRadius),
-          borderSide: BorderSide.none,
         ),
         hintStyle: Theme.of(context)
             .textTheme
