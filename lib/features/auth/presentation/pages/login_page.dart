@@ -158,6 +158,7 @@ class _ForegroundContentState extends State<_ForegroundContent> {
                               if (form.validate()) {
                                 allowGo = true;
                                 allowShowMsg = true;
+                                FocusScope.of(context).unfocus();
                                 BlocProvider.of<AuthBloc>(context).add(
                                     LoginEvent(params: LoginParams(
                                         email: emailController.text,
