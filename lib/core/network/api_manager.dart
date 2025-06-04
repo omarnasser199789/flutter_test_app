@@ -5,18 +5,13 @@ import 'package:http/http.dart' as http;
 
 class ApiManager {
   static  final Map<String, String> headers={};
-  static const String cachedJWTToken = 'CACHED_JWT_TOKEN';
-  static const String cachedJWTRefreshToken = 'CACHED_JWT_REFRESH_TOKEN';
+
   static Future<String?> getAuthToken() async {
     SecureStorageManager secureStorageManager =  SecureStorageManager();
-    String? result = await secureStorageManager.read( key: cachedJWTToken);
+    String? result = await secureStorageManager.read( key: SecureStorageManager.cachedJwtToken);
     return result;
   }
-  static Future<String> getRefreshToken({String? env}) async {
-    SecureStorageManager secureStorageManager =  SecureStorageManager();
-    String? result = await secureStorageManager.read( key: cachedJWTRefreshToken);
-    return result!;
-  }
+
   static Future<Map<String, String>> getHeaders({bool? useToken}) async {
     final authToken = await getAuthToken();
     headers['Authorization'] = 'Bearer $authToken';

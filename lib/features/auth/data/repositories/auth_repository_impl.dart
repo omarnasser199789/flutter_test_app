@@ -3,7 +3,7 @@ import '../../../../core/error/failures.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../domain/use_cases/login_usecase.dart';
-import '../data_sources/remot_data_sourse/auth_data_source.dart';
+import '../data_sources/remote_data_source/auth_data_source.dart';
 import 'auth_repository_functions.dart';
 
 class AuthRepositoryImpl implements AuthRepository {

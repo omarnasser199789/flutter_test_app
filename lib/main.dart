@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'injection_container.dart' as di;
 import 'Theme/theme_values.dart';
-import 'get_started_page.dart';
+import 'features/get_started/get_started_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 
@@ -25,7 +29,6 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             themeMode: currentMode,
             theme: AppTheme.getLightTheme(),
-            darkTheme: AppTheme.getDarkTheme(),
             home: const GetStartedPage(),
           );
         });

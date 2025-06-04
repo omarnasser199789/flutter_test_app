@@ -64,3 +64,15 @@ showMessage( { required String  message,required BuildContext context,Color ? bg
         .show(context);
   });
 }
+
+String formatDate(DateTime date) {
+  return "${monthShort(date.month)} ${date.day}";
+}
+
+String monthShort(int month) {
+  const months = [
+    '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  return months[month];
+}

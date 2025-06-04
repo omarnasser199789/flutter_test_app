@@ -8,7 +8,7 @@ import '../../../../core/widgets/back_button_widget.dart';
 import '../../../../core/widgets/background_glows.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
-import '../../../../dashboard/pages/dashboard_page.dart';
+import '../../../dashboard/presentation/pages/dashboard_page.dart';
 import '../../domain/use_cases/login_usecase.dart';
 import '../bloc/bloc.dart';
 
@@ -67,124 +67,126 @@ class _ForegroundContentState extends State<_ForegroundContent> {
             }
           }
 
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const BackButtonWidget(),
-              Padding(
-                padding: const EdgeInsets.only(left: 45, right: 45),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 114,
-                        child: DefaultTextStyle(
-                          style: Theme.of(context).textTheme.displayMedium!,
-                          child: AnimatedTextKit(
-                            totalRepeatCount: 1,
-                            animatedTexts: [
-                              TypewriterAnimatedText(
-                                'Welcome\nBack.',
-                              ),
-                            ],
-                            onTap: () {},
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const BackButtonWidget(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 45, right: 45),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 114,
+                          child: DefaultTextStyle(
+                            style: Theme.of(context).textTheme.displayMedium!,
+                            child: AnimatedTextKit(
+                              totalRepeatCount: 1,
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  'Welcome\nBack.',
+                                ),
+                              ],
+                              onTap: () {},
+                            ),
                           ),
                         ),
-                      ),
-                      CustomTextField(
-                        hint: "Email",
-                        textInputAction: TextInputAction.done,
-                        controller: emailController,
-                        prefixIcon: SvgPicture.asset(
-                          ImgAssets.email,
-                        ),
-                        validator: (value) {
-                          if (value == "") {
-                            return "Email can not be empty!";
-                          } else {
-                            return FieldValidator.validateEmail(value);
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 39,
-                      ),
-                      CustomTextField(
-                        hint: "Password",
-                        controller: passwordController,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.text,
-                        suffixIcon: SvgPicture.asset(
-                          ImgAssets.featherEye,
-                        ),
-                        prefixIcon: SvgPicture.asset(
-                          ImgAssets.password,
-                        ),
-                        isPassword: true,
-                        validator: (value) {
-                          if (value == "") {
-                            return "Password can not be empty!";
-                          } else {
-                            return FieldValidator.validatePassword(value);
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 13,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            "Forgot Password?",
-                            style: Theme.of(context).textTheme.titleMedium,
+                        CustomTextField(
+                          hint: "Email",
+                          textInputAction: TextInputAction.done,
+                          controller: emailController,
+                          prefixIcon: SvgPicture.asset(
+                            ImgAssets.email,
                           ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 52,
-                      ),
-                      Hero(
-                        tag: "FROM_GET_STARTED_PAGE_TO_HOME_SCREEN_PAGE",
-                        child: CustomButton(
-                          text: 'Login',
-                          loading: loading,
-                          onTap: () {
-                            FormState form = _formKey.currentState!;
-                            if (form.validate()) {
-                              allowGo = true;
-                              allowShowMsg = true;
-                              BlocProvider.of<AuthBloc>(context).add(
-                                  LoginEvent(params: LoginParams(
-                                      email: emailController.text,
-                                      password: passwordController.text)));
+                          validator: (value) {
+                            if (value == "") {
+                              return "Email can not be empty!";
+                            } else {
+                              return FieldValidator.validateEmail(value);
                             }
                           },
                         ),
-                      ),
-                      const SizedBox(
-                        height: 39,
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: "Don`t have an account?",
-                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Theme.of(context).canvasColor.withOpacity(0.5)),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: " Sign Up",
-                              style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Theme.of(context).primaryColor),
+                        const SizedBox(
+                          height: 39,
+                        ),
+                        CustomTextField(
+                          hint: "Password",
+                          controller: passwordController,
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.text,
+                          suffixIcon: SvgPicture.asset(
+                            ImgAssets.featherEye,
+                          ),
+                          prefixIcon: SvgPicture.asset(
+                            ImgAssets.password,
+                          ),
+                          isPassword: true,
+                          validator: (value) {
+                            if (value == "") {
+                              return "Password can not be empty!";
+                            } else {
+                              return FieldValidator.validatePassword(value);
+                            }
+                          },
+                        ),
+                        const SizedBox(
+                          height: 13,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Forgot Password?",
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 52,
+                        ),
+                        Hero(
+                          tag: "FROM_GET_STARTED_PAGE_TO_HOME_SCREEN_PAGE",
+                          child: CustomButton(
+                            text: 'Login',
+                            loading: loading,
+                            onTap: () {
+                              FormState form = _formKey.currentState!;
+                              if (form.validate()) {
+                                allowGo = true;
+                                allowShowMsg = true;
+                                BlocProvider.of<AuthBloc>(context).add(
+                                    LoginEvent(params: LoginParams(
+                                        email: emailController.text,
+                                        password: passwordController.text)));
+                              }
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 39,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            text: "Don`t have an account?",
+                            style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Theme.of(context).canvasColor.withOpacity(0.5)),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: " Sign Up",
+                                style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Theme.of(context).primaryColor),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           );
         }));
   }
